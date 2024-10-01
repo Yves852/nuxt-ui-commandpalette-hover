@@ -14,7 +14,10 @@
       <UCommandPalette
         v-model="selected"
         :groups="groups"
+        multiple
+        nullable
         :autoselect="false"
+        :fuse="{ resultLimit: 6, fuseOptions: { threshold: 0.1 } }"
       />
       <pre>{{ selected }}</pre>
     </UCard>
@@ -22,7 +25,7 @@
 </template>
 
 <script setup>
-const selected = ref({});
+const selected = ref([]);
 const groups = computed(() => [
   {
     key: 'results',
